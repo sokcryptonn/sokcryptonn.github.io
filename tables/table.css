@@ -1,0 +1,19 @@
+/* .tabulator-col .tabulator-col-title {
+    bottom: 0;
+    left: 42%;
+    width: 100%;
+    height: 100%;
+
+    transform: skew(45deg,0deg) rotate(315deg) translateY(-8px);
+    transform-origin: top left;
+    position: absolute;
+    bottom: 10px;
+    width: 150px;
+    left: 42%;
+    height: 24px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    line-height: 12px;
+    white-space: normal !important;
+    color: white;
+} */

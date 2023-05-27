@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vega Chart Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+</head>
+
+<body>
+    <div id="chart"></div>
+
+    <script>
+        // Embed the Vega chart from the JSON file
+        const embedOpt = {
+            actions: false // Optional: Disable the toolbar with interactive actions
+        };
+        vegaEmbed("#chart", "vega-chart-zoom.json", embedOpt)
+            .catch(console.error);
+    </script>
+</body>
+
+</html>

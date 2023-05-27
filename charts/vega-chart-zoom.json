@@ -1,0 +1,384 @@
+{
+  "$schema": "https://vega.github.io/schema/vega/v5.json",
+  "width": 800,
+  "height": 600,
+  "padding": {
+    "left": 50,
+    "right": 50,
+    "top": 30,
+    "bottom": 50
+  },
+  "autosize": "fit",
+  "signals": [
+    {
+      "name": "margin",
+      "value": 20
+    },
+    {
+      "name": "anchor",
+      "value": [
+        0,
+        0
+      ],
+      "on": [
+        {
+          "events": "wheel",
+          "update": "[invert('xscale', x()), invert('yscale', y())]"
+        }
+      ]
+    },
+    {
+      "name": "zoom",
+      "value": 1,
+      "on": [
+        {
+          "events": "wheel!",
+          "force": true,
+          "update": "pow(1.002, event.deltaY * pow(16, event.deltaMode))"
+        }
+      ]
+    },
+    {
+      "name": "xdom",
+      "update": "[xext[0]/2, xext[1]*4]",
+      "on": [
+        {
+          "events": "dblclick",
+          "update": "slice(xext)"
+        },
+        {
+          "events": {
+            "signal": "zoom"
+          },
+          "update": "[clamp(exp(log(anchor[0]) + (log(xdom[0]) - log(anchor[0])) * zoom), xext[0]/2, xext[1]/2), clamp(exp(log(anchor[0]) + (log(xdom[1]) - log(anchor[0])) * zoom), 1, xext[1]*4)]"
+        }
+      ]
+    },
+    {
+      "name": "ydom",
+      "update": "[yext[0]-0.05, 1.0]",
+      "on": [
+        {
+          "events": "dblclick",
+          "update": "slice(yext)"
+        },
+        {
+          "events": {
+            "signal": "zoom"
+          },
+          "update": "[max(yext[0]-0.05, anchor[1] + (ydom[0] - anchor[1]) * zoom), min(1, anchor[1] + (ydom[1] - anchor[1]) * zoom)]"
+        }
+      ]
+    },
+    {
+      "name": "size",
+      "update": "clamp(pow(2, 10) / log(xdom[1]) - log(xdom[1])/LN2, 50, 1000)"
+    },
+    {
+      "name": "measure",
+      "value": "Latency (ms)",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Throughput (Im/hr)",
+          "Latency (ms)"
+        ],
+        "name": "Measure"
+      }
+    },
+    {
+      "name": "dataset",
+      "value": "CIFAR-10",
+      "bind": {
+        "input": "select",
+        "options": [
+          "MNIST",
+          "CIFAR-10"
+        ],
+        "name": "Dataset"
+      }
+    },
+    {
+      "name": "mode",
+      "value": "Online",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Online",
+          "Total"
+        ],
+        "name": "Mode"
+      }
+    },
+    {
+      "name": "networkSetting",
+      "value": "LAN",
+      "bind": {
+        "input": "select",
+        "options": [
+          "LAN",
+          "WAN"
+        ],
+        "name": "Network Setting"
+      }
+    }
+  ],
+  "data": [
+    {
+      "name": "source",
+      "url": "vega-data.json",
+      "transform": [
+        {
+          "type": "filter",
+          "expr": "datum.Measure === measure && datum.Dataset === dataset && datum['Network Setting'] === networkSetting && datum.Mode === mode"
+        },
+        {
+          "type": "extent",
+          "field": {
+            "signal": "measure"
+          },
+          "signal": "xext"
+        },
+        {
+          "type": "extent",
+          "field": "Accuracy",
+          "signal": "yext"
+        }
+      ]
+    }
+  ],
+  "scales": [
+    {
+      "name": "xscale",
+      "zero": false,
+      "type": "log",
+      "domain": {
+        "signal": "xdom"
+      },
+      "range": "width"
+    },
+    {
+      "name": "yscale",
+      "zero": false,
+      "domain": {
+        "signal": "ydom"
+      },
+      "range": "height"
+    },
+    {
+      "name": "x",
+      "type": "log",
+      "domain": {
+        "data": "source",
+        "field": {
+          "signal": "measure"
+        }
+      },
+      "range": "width",
+      "nice": true
+    },
+    {
+      "name": "y",
+      "type": "linear",
+      "domain": {
+        "data": "source",
+        "field": "Accuracy"
+      },
+      "zero": false,
+      "range": "height",
+      "nice": true
+    },
+    {
+      "name": "color",
+      "type": "ordinal",
+      "domain": [
+        "Pure-HE",
+        "S/C",
+        "MPC"
+      ],
+      "range": [
+        "green",
+        "blue",
+        "red"
+      ]
+    },
+    {
+      "name": "symbolScale",
+      "type": "ordinal",
+      "domain": [
+        "Pure-HE",
+        "S/C",
+        "MPC"
+      ],
+      "range": [
+        "cross", "circle", "triangle"
+      ]
+    }
+  ],
+  "axes": [
+    {
+      "orient": "bottom",
+      "scale": "xscale",
+      "title": {
+        "signal": "measure"
+      },
+      "labelOverlap": "greedy",
+      "grid": true,
+      "ticks": true,
+      "labelPadding": 5
+    },
+    {
+      "orient": "left",
+      "scale": "yscale",
+      "title": "Accuracy",
+      "grid": true,
+      "ticks": true,
+      "labelPadding": 5
+    }
+  ],
+  "marks": [
+    {
+      "type": "symbol",
+      "from": {
+        "data": "source"
+      },
+      "clip": true,
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": {
+              "signal": "measure"
+            }
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Accuracy"
+          },
+          "shape": {
+            "scale": "symbolScale",
+            "field": "type"
+          },
+          "fill": {
+            "scale": "color",
+            "field": "type"
+          },
+          "size": {
+            "signal": "size"
+          }
+        },
+        "update": {
+          "opacity": {
+            "value": 1
+          },
+          "x": {
+            "scale": "xscale",
+            "field": {
+              "signal": "measure"
+            }
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Accuracy"
+          },
+          "size": {
+            "signal": "size"
+          }
+        },
+        "hover": {
+          "opacity": {
+            "value": 0.5
+          },
+          "tooltip": {
+            "signal": "{'Name': datum.Name, 'Dataset': datum.Dataset, 'Network Setting': datum['Network Setting'], 'Mode': datum.Mode, 'Latency': datum['Latency (ms)'], 'Throughput': datum['Throughput (Im/hr)'], 'Accuracy': datum.Accuracy, 'Framework Type': datum.type}"
+          }
+        }
+      }
+    },
+    {
+      "type": "text",
+      "from": {
+        "data": "source"
+      },
+      "clip": true,
+      "encode": {
+        "enter": {
+          "x": {
+            "scale": "xscale",
+            "field": {
+              "signal": "measure"
+            }
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Accuracy"
+          },
+          "text": {
+            "field": "Name"
+          },
+          "angle": {
+            "value": -28
+          },
+          "baseline": {
+            "value": "middle"
+          },
+          "align": {
+            "value": "left"
+          },
+          "fontSize": {
+            "signal": "datum.showName ? 14 : 9"
+          },
+          "fontStyle": {
+            "value": "normal"
+          },
+          "fill": {
+            "value": "black"
+          },
+          "dx": {
+            "value": 0
+          },
+          "dy": {
+            "value": -10
+          },
+          "fillOpacity": {
+            "signal": "datum.showName ? 1 : 0.25"
+          }
+        },
+        "update": {
+          "x": {
+            "scale": "xscale",
+            "field": {
+              "signal": "measure"
+            }
+          },
+          "y": {
+            "scale": "yscale",
+            "field": "Accuracy"
+          }
+        }
+      }
+    }
+  ],
+  "legends": [
+    {
+      "fill": "color",
+      "shape": "symbolScale",
+      "title": "Framework Type",
+      "encode": {
+        "labels": {
+          "interactive": true,
+          "update": {
+            "fillOpacity": {
+              "value": 1
+            }
+          },
+          "hover": {
+            "fillOpacity": {
+              "value": 0.5
+            }
+          }
+        }
+      }
+    }
+  ]
+}
