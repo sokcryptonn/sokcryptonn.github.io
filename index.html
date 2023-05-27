@@ -2965,8 +2965,8 @@ confined.</p>
 Circa <span class="citation" data-cites="nips/GhodsiJ21">(<a href="#ref-nips/GhodsiJ21" role="doc-biblioref">Ghodsi et al. 2021</a>)</span> simplifies and thus accelerates <span class="math inline">\(\mathsf{CMP}\)</span> in GC,
 and truncates its input to suppress its error probability, which is linear in the input’s absolute value.</p>
 <p><strong>DGK for GPU.</strong>
-DGK protocol of Damg{}rd compares two HE-encrypted integers and outputs a result bit.
-Its na"{i}ve implementation is slower than GC/GMW’s <span class="math inline">\(\mathsf{CMP}\)</span>.
+DGK protocol of Damgard compares two HE-encrypted integers and outputs a result bit.
+Its naive implementation is slower than GC/GMW’s <span class="math inline">\(\mathsf{CMP}\)</span>.
 GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span> transforms DGK
 into a bunch of linear operations and fits them with its AHE-to-SOS trick,
 which outperforms Gazelle <span class="citation" data-cites="uss/JuvekarVC18">(<a href="#ref-uss/JuvekarVC18" role="doc-biblioref">Juvekar, Vaikuntanathan, and Chandrakasan 2018</a>)</span> and Delphi <span class="citation" data-cites="uss/MishraLSZP20">(<a href="#ref-uss/MishraLSZP20" role="doc-biblioref">Mishra et al. 2020</a>)</span>,
@@ -3483,9 +3483,8 @@ There is growing attention to hyperparameter optimization (HO) since tuning proc
 <em>Are there any HO opportunities beneficial to PPNN, say, minimizing the cost of cryptographic NN computation while maintaining an “acceptable” accuracy level?</em></p>
 <p><strong>Open Problem 8.</strong>
 <em>Can we realize “private training with HO”?</em></p>
-<h3 id="deploying-optimized-he-frameworks">Deploying Optimized HE Frameworks</h3>
-<p>{#sec:he-deploy}
-To sustain the
+<h3 id="sec:he-deploy">Deploying Optimized HE Frameworks</h3>
+<p>To sustain the
 magnitude growth
 in iterated ciphertext operations,
 pure-LHE frameworks
