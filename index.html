@@ -2608,7 +2608,7 @@ In the online phase, the garbler only obliviously sends the evaluator the shares
 In contrast, GMW requires interaction for each <span class="math inline">\(\mathsf{AND}\)</span> gate.
 Thus, GC is thus a better choice than GMW for <span class="math inline">\(2\)</span>PC .</p>
 <h4 id="sec:prelim_ot">Oblivious Transfer (OT)</h4>
-<p>allows the receiver to pick the item obliviously (hiding <span class="math inline">\(i\)</span>) from the sender’s table of items <span class="math inline">\(A_1, \ldots, A_n\)</span>,
+<p>allows the receiver to pick the <span class="math inline">\(i\)</span>-th item obliviously (hiding <span class="math inline">\(i\)</span>) from the sender’s table of items <span class="math inline">\(A_1, \ldots, A_n\)</span>,
 i.e., it realizes <span class="math inline">\(2\)</span>PC <span class="math inline">\(f(\{A_j\}, i) \rightarrow (\bot, A_i)\)</span>.
 In OT extension <span class="citation" data-cites="crypto/IshaiKNP03">(<a href="#ref-crypto/IshaiKNP03" role="doc-biblioref">Ishai et al. 2003</a>)</span>, online crypto operations are solely symmetric-key ones, while public-key operations are shifted offline.
 OT is a building block for GC and Beaver triplets <span class="citation" data-cites="crypto/Beaver91a">(<a href="#ref-crypto/Beaver91a" role="doc-biblioref">Beaver 1991</a>)</span>.
@@ -3065,11 +3065,11 @@ as they tolerate limited-precision (<span class="math inline">\({\sim}8\)</span>
 <p>We highlight two works at two ends of the spectrum in a sense.
 “QuantizedNN” <span class="citation" data-cites="popets/Dalskov0K20">(<a href="#ref-popets/Dalskov0K20" role="doc-biblioref">Dalskov, Escudero, and Keller 2020</a>)</span> directly adopted a quantized inference scheme <span class="citation" data-cites="cvpr/JacobKCZTHAK18">(<a href="#ref-cvpr/JacobKCZTHAK18" role="doc-biblioref">Jacob et al. 2018</a>)</span> (originally designed for reducing the model size) to simplify the arithmetics and activations.</p>
 <p>GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span> adopts SWALP
-(tochastic eight veraging in ow-recision training) <span class="citation" data-cites="icml/YangZKBWS19">(<a href="#ref-icml/YangZKBWS19" role="doc-biblioref">G. Yang et al. 2019</a>)</span>
+(<strong>s</strong>tochastic <strong>w</strong>eight <strong>a</strong>veraging in <strong>l</strong>ow-<strong>p</strong>recision training) <span class="citation" data-cites="icml/YangZKBWS19">(<a href="#ref-icml/YangZKBWS19" role="doc-biblioref">G. Yang et al. 2019</a>)</span>
 that trains a quantized model for inference with <span class="math inline">\({&lt;}1\)</span> percentage point (pp) of accuracy drop,
 further abstracts the (de)quantization to “SRT layers,”
 with a more efficient truncation protocol,
-and analytically proves that the output distribution is close to such tochastic ounding after runcation.
+and analytically proves that the output distribution is close to such <strong>s</strong>tochastic <strong>r</strong>ounding after <strong>t</strong>runcation.
 Interestingly, SRT is also GPU-friendly using the AHE-to-SOS trick.</p>
 <p>With what the two previous subsections discussed, we ask:</p>
 <p><strong>Challenge 2.</strong>
@@ -3331,7 +3331,7 @@ for many
 iterations before making noticeable changes to the weights.
 The training ceases to progress because these small gradients are discarded.</p>
 <p>Quotient <span class="citation" data-cites="ccs/AgrawalSKG19">(<a href="#ref-ccs/AgrawalSKG19" role="doc-biblioref">Agrawal et al. 2019</a>)</span> adopts a QNN training scheme WAGE <span class="citation" data-cites="iclr/WuLCS18">(<a href="#ref-iclr/WuLCS18" role="doc-biblioref">S. Wu et al. 2018</a>)</span>
-(constraining eights, ctivations, radients, and rrors)
+(constraining <strong>w</strong>eights, <strong>a</strong>ctivations, <strong>g</strong>radients, and <strong>e</strong>rrors)
 to update the weights stochastically according to the magnitude of the gradient,
 such that small gradients still have an impact on the big weight.
 Yet, its attained accuracy is still inferior to</p>
@@ -3363,7 +3363,7 @@ The loss function <a href="#privtrain:softmax"><span class="math inline">\(\math
 With the current techniques, we still need relatively <a href="#privtrain:highbit">high bitwidth representation</a>,
 harming the training throughput,
 and the resulting accuracy could be shy of <span class="math inline">\({&gt;}30\)</span>pp:
-CryptGPU <span class="citation" data-cites="sp/TanKTW21">(<a href="#ref-sp/TanKTW21" role="doc-biblioref">Tan et al. 2021</a>)</span> only attains <span class="math inline">\({\sim}60\%\)</span> accuracy in , while GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span> gets to <span class="math inline">\({&gt;}90\%\)</span> in oblivious inference <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span>.
+CryptGPU <span class="citation" data-cites="sp/TanKTW21">(<a href="#ref-sp/TanKTW21" role="doc-biblioref">Tan et al. 2021</a>)</span> only attains <span class="math inline">\({\sim}60\%\)</span> accuracy in CIFAR-10, while GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span> gets to <span class="math inline">\({&gt;}90\%\)</span> in oblivious inference <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span>.
 Private training still desires more ML research,
 tackling the following two challenges.</p>
 <p><strong>Challenge 5.</strong>
@@ -3426,8 +3426,8 @@ It takes <span class="math inline">\(t\)</span> iterations of SS multiplications
 <p><strong>Lookup Table.</strong>
 Borrowing memory-saving tricks in embedded systems, SiRnn <span class="citation" data-cites="sp/RatheeRGGSCR21">(<a href="#ref-sp/RatheeRGGSCR21" role="doc-biblioref">Rathee et al. 2021</a>)</span> extends a provably precise lookup approach for getting a good initial guess before using iteration to improve upon the approximation.
 Namely, it obliviously looks up <span class="math inline">\(d\)</span>-digit <span class="math inline">\(\langle \mathsf{exp}({2^{d\cdot (i-1)} x_i} \rangle)\)</span> over <span class="math inline">\(\langle x_i \rangle\)</span>
-for <span class="math inline">\(x = x_k || \cdots || x_1\)</span> and multiplies the shares</p>
-<p>as <span class="math inline">\(e^x = \mathsf{exp}({2^{d\cdot (k-1)} \cdot x_k + \cdots + 2^d \cdot x + x_1})\)</span>.
+for <span class="math inline">\(x = x_k || \cdots || x_1\)</span> and multiplies the shares
+as <span class="math inline">\(e^x = \mathsf{exp}({2^{d\cdot (k-1)} \cdot x_k + \cdots + 2^d \cdot x + x_1})\)</span>.
 An upside is that the oblivious lookup can be parallelized,
 while iterative approaches are inherently sequential.</p>
 <p>The above approaches only work on additive shares.
@@ -4417,7 +4417,7 @@ Zheng, Wenting, Raluca Ada Popa, Joseph E. Gonzalez, and Ion Stoica. 2019. <span
 <p>BibTeX citation</p>
 <pre class="citation-appendix long">@inproceedings{sp/NgC23,
   author = {Ng, Lucien K. L. and Chow, Sherman S. M},
-  title = {SoK: Cryptographic Neural-Network Computation},
+  title = {{SoK}: {Cryptographic} Neural-Network Computation},
   booktitle = {44th {IEEE} Symposium on Security and Privacy, {SP} 2023, San Francisco,
                CA, USA, 22-25 May 2023},
   year = {2023},
