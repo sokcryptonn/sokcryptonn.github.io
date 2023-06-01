@@ -2320,6 +2320,33 @@ window.MathJax = {
     MathJax.Hub.Rerender();
   }
 };
+
+function waitForElm(selector) {
+    return new Promise(resolve => {
+        if (document.querySelector(selector)) {
+            return resolve(document.querySelector(selector));
+        }
+
+        const observer = new MutationObserver(mutations => {
+            if (document.querySelector(selector)) {
+                resolve(document.querySelector(selector));
+                observer.disconnect();
+            }
+        });
+
+        observer.observe(document.body, {
+            childList: true,
+            subtree: true
+        });
+    });
+}
+
+waitForElm("body > d-byline > div > div:nth-child(2)").then((elm) => {
+    elm.innerHTML = "<div><h3>Last Updated</h3><p>01 June, 2023</p></div>"
+    console.log(elm.textContent);
+});
+
+
 </script>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <h2 id="abstract">Abstract</h2>
@@ -4389,7 +4416,7 @@ Zheng, Wenting, Raluca Ada Popa, Joseph E. Gonzalez, and Ion Stoica. 2019. <span
 
 <p>BibTeX citation</p>
 <pre class="citation-appendix long">@inproceedings{sp/NgC23,
-  author = {N, Lucien K. L. and Chow, Sherman S. M},
+  author = {Ng, Lucien K. L. and Chow, Sherman S. M},
   title = {SoK: Cryptographic Neural-Network Computation},
   booktitle = {44th {IEEE} Symposium on Security and Privacy, {SP} 2023, San Francisco,
                CA, USA, 22-25 May 2023},
