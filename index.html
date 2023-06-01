@@ -2521,10 +2521,10 @@ e.g., the honest party’s hardware and software are not compromised.
 The model owner and the querier are also called the <em>server</em> and the <em>client</em>, respectively.
 This paper refers to it as <em>server/client</em> or <em>S/C</em> (to avoid confusion with <span class="math inline">\(2\)</span>PC
 frameworks using two non-colluding servers on top of two-party computation (<span class="math inline">\(2\)</span>PC) techniques).
-In practice, some metadata, such as the dimension of the query as a feature vector, might be considered public knowledge (see <a href="#subsec:leakage">Section for Leakage</a>).</p>
+In practice, some metadata, such as the dimension of the query as a feature vector, might be considered public knowledge (see <a href="#subsec:leakage">the Section on Leakage</a>).</p>
 <p>Outsourced inference refers to the same computation,
 while the <span class="math inline">\(\mathit{model}\)</span> is outsourced in an encrypted form to a single server
-or secret-shared (Section for <a href="#subsec:ss">Secret Sharing</a>) among different non-colluding servers.
+or secret-shared (<a href="#subsec:ss">the Section on Secret Sharing</a>) among different non-colluding servers.
 The querier may or may not interact with servers during the computation.
 Finally, <span class="math inline">\(n\)</span>-party private training can be abstracted as the secure multi-party computation of
 <span class="math inline">\(f(\langle \mathit{dataset} \rangle_1, \ldots, \langle \mathit{dataset} \rangle_n) \rightarrow (\langle \mathit{model} \rangle_1, \ldots,\langle \mathit{model} \rangle_n)\)</span>.
@@ -2601,7 +2601,7 @@ Encryption <span class="math inline">\([x] = \mathsf{Enc}_{\mathsf{pk}}(x)\)</sp
 <p><em>Leveled-HE (LHE)</em>, somewhat-HE,
 supports a limited number of multiplications
 corresponding to the depth of an <em>arithmetic circuit</em>.
-The number is a tunable parameter that affects the ciphertext size and efficiency of the homomorphic operations (Section <a href="#sec:he-deploy">for HE optimization</a>).</p>
+The number is a tunable parameter that affects the ciphertext size and efficiency of the homomorphic operations (<a href="#sec:he-deploy">the Section on HE optimization</a>).</p>
 <p>LHE like BFV-HE <span class="citation" data-cites="crypto/Brakerski12 eprint/FanV12">(<a href="#ref-crypto/Brakerski12" role="doc-biblioref">Brakerski 2012</a>; <a href="#ref-eprint/FanV12" role="doc-biblioref">Fan and Vercauteren 2012</a>)</span>,
 BGV-HE <span class="citation" data-cites="toct/BrakerskiGV14">(<a href="#ref-toct/BrakerskiGV14" role="doc-biblioref">Brakerski, Gentry, and Vaikuntanathan 2014</a>)</span>,
 and CKKS-HE <span class="citation" data-cites="asiacrypt/CheonKKS17">(<a href="#ref-asiacrypt/CheonKKS17" role="doc-biblioref">Cheon et al. 2017</a>)</span>
@@ -2626,7 +2626,7 @@ decryption will fail.</p>
 Yet,
 one can ask
 the secret key holder to help “denoise” the ciphertext by
-adding an additive mask (via <span class="math inline">\(\star\)</span>) without leaking the encrypted message (see <a href="#sec:he-simd">Section for efficient HE</a>).</p>
+adding an additive mask (via <span class="math inline">\(\star\)</span>) without leaking the encrypted message (see <a href="#sec:he-simd">the Section on efficient HE</a>).</p>
 <p><em>Two SIMD Layouts.</em>
 Consider the central part of a photo is of interest; one ciphertext thus stores the same part of many photos.
 Such kind of batch-query processing via SIMD is relevant only when the client always has a batch of queries.
@@ -2658,7 +2658,7 @@ with the message inside unchanged <span class="citation" data-cites="nutmic/Bour
 in general
 in a high-latency network as no communication is needed in between.
 This motivates pure-HE frameworks
-(Sections <a href="#sec:pure-lhe">for pure-LHE frameworks</a> and <a href="#sec:tfhe">for TFHE frameworks</a>)
+(the Section <a href="#sec:pure-lhe">on pure-LHE frameworks</a> and <a href="#sec:tfhe">on TFHE frameworks</a>)
 and differentiates them from the rest.</p>
 <p>LHE and arithmetic SS are born to handle linear layers.
 Boolean/circuit-based primitives,
@@ -2668,7 +2668,7 @@ This motivates <a href="#sec:mixed">the mixed framework</a>.</p>
 <p>Arithmetic SS, boolean SS, and Yao’s shares (A/B/Y) can be converted to each other with a few communication rounds (except Y to B, which is free) such that one can use <em>mixed-protocol computation</em> with
 the most-fit form for each kind of computation.
 ABY <span class="citation" data-cites="ndss/DemmlerSZ15">(<a href="#ref-ndss/DemmlerSZ15" role="doc-biblioref">Demmler, Schneider, and Zohner 2015</a>)</span> is proposed for this purpose.</p>
-<p>This leads to interesting interbreeds in mixed and MPC frameworks (<a href="#sec:mpc">Section for MPC</a>).</p>
+<p>This leads to interesting interbreeds in mixed and MPC frameworks (<a href="#sec:mpc">the Section on MPC</a>).</p>
 <h4 id="subsec:bitwidth-issue">Struggles in Fixed-Points and Limited Bitwidth.</h4>
 <p>Most crypto primitives operate over <span class="math inline">\(\mathbb{Z}_p\)</span> for a large prime <span class="math inline">\(p\)</span>,
 which we call <em>fixed-points</em>, while
@@ -2689,7 +2689,7 @@ different classes of frameworks tackle a slightly different form of it in their 
 <p>Crypto operations usually incur high overhead
 and tend to attain a lower accuracy
 for operating over fixed-points
-(e.g., see Section <a href="#sec:mixed-bitwidth">for mixed bitwidth</a>).</p>
+(e.g., see <a href="#sec:mixed-bitwidth">the Section on mixed bitwidth</a>).</p>
 <p>We highlight the initial struggles and some milestones.
 A query on MNIST takes CryptoNets <span class="citation" data-cites="icml/Gilad-BachrachD16">(<a href="#ref-icml/Gilad-BachrachD16" role="doc-biblioref">Gilad-Bachrach et al. 2016</a>)</span> <span class="math inline">\(300\)</span>s.
 Two years later, Gazelle <span class="citation" data-cites="uss/JuvekarVC18">(<a href="#ref-uss/JuvekarVC18" role="doc-biblioref">Juvekar, Vaikuntanathan, and Chandrakasan 2018</a>)</span> takes only <span class="math inline">\(0.03\)</span>s.
@@ -2708,12 +2708,12 @@ different protocols handle each layer type separately.
 Such modular designs allow flexibility over
 many architectures.</p>
 <p><strong>Roadmap.</strong>
-We have section to discuss <a href="#sec:pure-lhe">pure-LHE-based</a>, <a href="#sec:mixed">mixed</a>, and <a href="#sec:mpc">MPC-based</a> frameworks, respectively.
-Section <a href="#sec:deploy">for depolyment</a>
+Following sections will discuss <a href="#sec:pure-lhe">pure-LHE-based</a>, <a href="#sec:mixed">mixed</a>, and <a href="#sec:mpc">MPC-based</a> frameworks.
+<a href="#sec:deploy">the Section on depolyment</a>
 discusses special focuses,
-which might interest experts outside crypto communities.</p>
-<p>Section <a href="#sec:benchmark">for benchmarks</a> compares the performance of different frameworks and puts them on the Pareto frontier.
-Section <a href="#sec:sota-diff-setting">for SoTA</a> recommends the state of the arts for specific functions under different settings/assumptions.</p>
+which might interest experts outside crypto communities.
+<a href="#sec:benchmark">the Section on benchmarks</a> compares the performance of different frameworks and puts them on the Pareto frontier.
+<a href="#sec:sota-diff-setting">the Section on SoTA</a> recommends the state of the arts for specific functions under different settings/assumptions.</p>
 <div class="layout-chunk" data-layout="l-body">
 <table>
 <caption><span id="tab:set">Table 1: </span>Privacy Services Supported by Different Paradigms.</caption>
@@ -2773,7 +2773,7 @@ the server computes <span class="math inline">\([y_i] = \sum_j w_{ij} \cdot [x_{
 encrypted layer input <span class="math inline">\([x_{ij}]\)</span>.</p>
 <p>Some <a href="#sec:mixed">mixed frameworks</a>
 also handle linear layers in this way.
-(We thus defer to <a href="#sec:he-simd">Section for efficent HE</a> for LoLa <span class="citation" data-cites="icml/BrutzkusGE19">(<a href="#ref-icml/BrutzkusGE19" role="doc-biblioref">Brutzkus, Gilad-Bachrach, and Elisha 2019</a>)</span>.)
+(We thus defer to <a href="#sec:he-simd">the Section on efficient HE</a> for LoLa <span class="citation" data-cites="icml/BrutzkusGE19">(<a href="#ref-icml/BrutzkusGE19" role="doc-biblioref">Brutzkus, Gilad-Bachrach, and Elisha 2019</a>)</span>.)
 Below, we discuss
 “BNormCrypt” <span class="citation" data-cites="eprint/2017:035">(<a href="#ref-eprint/2017:035" role="doc-biblioref">Chabanne et al. 2017</a>)</span>,
 CryptoDL <span class="citation" data-cites="popets/HesamifardTGW18">(<a href="#ref-popets/HesamifardTGW18" role="doc-biblioref">Hesamifard et al. 2018</a>)</span>,
@@ -2781,7 +2781,7 @@ FasterCryptoNets <span class="citation" data-cites="corr/fastercryptonets">(<a h
 HCNN <span class="citation" data-cites="tetc/BadawiJLMJTNAC21">(<a href="#ref-tetc/BadawiJLMJTNAC21" role="doc-biblioref">Badawi et al. 2021</a>)</span>,
 E2DM <span class="citation" data-cites="ccs/JiangKLS18">(<a href="#ref-ccs/JiangKLS18" role="doc-biblioref">Jiang et al. 2018</a>)</span>,
 and Glyph <span class="citation" data-cites="nips/LouFF020">(<a href="#ref-nips/LouFF020" role="doc-biblioref">Lou et al. 2020</a>)</span>
-(See <a href="#sec:he-deploy">Section for HE compilers/optimizers</a>).</p>
+(See <a href="#sec:he-deploy">the Section on HE compilers/optimizers</a>).</p>
 <h3 id="major-developments-for-pure-lhe-based-inference">Major Developments for Pure-LHE-based Inference</h3>
 <p><strong>Non-linear layers</strong>
 pose a challenge to pure-LHE frameworks.
@@ -2808,7 +2808,8 @@ to enable more efficient plaintext-ciphertext multiplication.</p>
 <p>It also quantizes the weights of linear layers
 to power-of-<span class="math inline">\(2\)</span>
 for more efficient multiplication.</p>
-<p>sets some weights in a trained NN to <span class="math inline">\(0\)</span>.
+<p><strong>Pruning</strong>
+sets some weights in a trained NN to <span class="math inline">\(0\)</span>.
 Pure-LHE frameworks above
 dedicate each HE ciphertext to a specific entry across all queries in a batch;
 each entry is then multiplied by the same weight.</p>
@@ -2936,7 +2937,7 @@ can use GPU to compute
 <span class="math inline">\(W \otimes \langle X \rangle\)</span>
 with performance close to plaintext computation.</p>
 <p>This observation generalizes SOS to the <em>AHE-to-SOS</em> trick <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span> for many compatible operations (e.g., truncation and GForce’s wrap-around protocol below) and non-linear layers.
-Also, the offline protocol can be optimized separately (see <a href="#sec:he-simd">Section for efficent HE</a>).</p>
+Also, the offline protocol can be optimized separately (see <a href="#sec:he-simd">the Section on efficient HE</a>).</p>
 <h3 id="sec:comparison">Comparison Functions for <span class="math inline">\(\mathsf{sign}\)</span>, <span class="math inline">\(\mathsf{max}\)</span>, and <span class="math inline">\(\mathsf{ReLU}\)</span></h3>
 <p>Non-linear layers in many popular NNs,
 e.g.,
@@ -2948,7 +2949,8 @@ a <em>secure comparison protocol</em> <span class="math inline">\(\mathsf{CMP}\)
 or <em>bit-extraction</em>
 for its equivalence to
 extract the MSB of (<span class="math inline">\(y - x)\)</span>.</p>
-<p><span class="math inline">\(\mathsf{ReLU}\)</span> and <span class="math inline">\(\mathsf{maxpool}\)</span> can be implemented by circuits with the comparison gate for <span class="math inline">\(\mathsf{CMP}\)</span> and multiplexer via the Beaver’s trick after the Yao-to-Arithmetic (Y2A) conversion of ABY <span class="citation" data-cites="ndss/DemmlerSZ15">(<a href="#ref-ndss/DemmlerSZ15" role="doc-biblioref">Demmler, Schneider, and Zohner 2015</a>)</span>.</p>
+<p><strong><span class="math inline">\(\mathsf{CMP}\)</span> via GC.</strong>
+<span class="math inline">\(\mathsf{ReLU}\)</span> and <span class="math inline">\(\mathsf{maxpool}\)</span> can be implemented by circuits with the comparison gate for <span class="math inline">\(\mathsf{CMP}\)</span> and multiplexer via the Beaver’s trick after the Yao-to-Arithmetic (Y2A) conversion of ABY <span class="citation" data-cites="ndss/DemmlerSZ15">(<a href="#ref-ndss/DemmlerSZ15" role="doc-biblioref">Demmler, Schneider, and Zohner 2015</a>)</span>.</p>
 <p>MiniONN computes <span class="math inline">\(\langle \mathsf{ReLU}(x) \rangle = \mathsf{CMP}(\langle x \rangle, 0) \cdot \langle x \rangle\)</span>.
 Gazelle <span class="citation" data-cites="uss/JuvekarVC18">(<a href="#ref-uss/JuvekarVC18" role="doc-biblioref">Juvekar, Vaikuntanathan, and Chandrakasan 2018</a>)</span>
 computes the entire <span class="math inline">\(\langle \mathsf{ReLU}(x) \rangle\)</span> in GC.
@@ -3051,7 +3053,7 @@ Interestingly, SRT is also GPU-friendly using the AHE-to-SOS trick.</p>
 <p>SOS computation reduces only online latency.
 Many mixed frameworks use various HE tricks to reduce the overall latency.</p>
 <p><strong>Denoising.</strong>
-Gazelle uses tight HE parameters to reduce latency, imposing a tight noise quota over HE operations (also see Section <a href="#sec:he-deploy">for HE Optimization</a>).
+Gazelle uses tight HE parameters to reduce latency, imposing a tight noise quota over HE operations (also see <a href="#sec:he-deploy">the Section on HE Optimization</a>).
 After each linear layer,
 it “refreshes” <span class="math inline">\([y + r]\)</span>, where <span class="math inline">\(y\)</span> is the intermediate result, and <span class="math inline">\(r\)</span> is a mask from additive SS,
 by sending it to the client to decrypt and
@@ -3060,7 +3062,7 @@ This requires a good network condition, and the client must remain online.</p>
 <p>A tempting trick is to let the client receive <span class="math inline">\(y\)</span>, possibly with “noise” (but not masks) injected for efficient non-linear computation.</p>
 <p>Such heuristics were quickly proven insecure as a malicious client can average out the noise with multiple queries <span class="citation" data-cites="ijcai/WongMWNC20">(<a href="#ref-ijcai/WongMWNC20" role="doc-biblioref">Wong et al. 2020</a>)</span>.</p>
 <p><strong>Optimizing/Reducing Rotations.</strong>
-SIMD is widely adopted, e.g. <span class="citation" data-cites="ccs/LiuJLA17">(<a href="#ref-ccs/LiuJLA17" role="doc-biblioref">Liu et al. 2017</a>)</span>, but its rotation is not cheap (Section <a href="#sec:prelim_he">for HE background knowledge</a>).</p>
+SIMD is widely adopted, e.g. <span class="citation" data-cites="ccs/LiuJLA17">(<a href="#ref-ccs/LiuJLA17" role="doc-biblioref">Liu et al. 2017</a>)</span>, but its rotation is not cheap (<a href="#sec:prelim_he">the Section on HE background knowledge</a>).</p>
 <p>Gazelle handles linear layers by dedicating all SIMD slots in an HE ciphertext to a single inference query to reduce its latency.</p>
 <p>To align the slots for summation, it proposes a slot encoding and rotation scheme to reduce the number of ciphertexts the server sends back.</p>
 <p>LoLa <span class="citation" data-cites="icml/BrutzkusGE19">(<a href="#ref-icml/BrutzkusGE19" role="doc-biblioref">Brutzkus, Gilad-Bachrach, and Elisha 2019</a>)</span> (a pure-LHE framework) also uses SIMD in the same way while minimizing the rotation cost according to the overall NN architecture.</p>
@@ -3083,15 +3085,14 @@ Many support private training.</p>
 <h3 id="major-developments-for-mpc-based-inference">Major Developments for MPC-based Inference</h3>
 <p>To support outsourced inference,
 SecureML <span class="citation" data-cites="sp/MohasselZ17">(<a href="#ref-sp/MohasselZ17" role="doc-biblioref">Mohassel and Zhang 2017</a>)</span> distributes the arithmetic shares of the weights to <span class="math inline">\(2\)</span> servers to evaluate the matrix multiplication or convolution via Beaver’s trick.
-It evaluates non-linear layers via GC or piecewise linear approximation (see Section <a href="#sec:non-linear">for non-linear layers</a>).
+It evaluates non-linear layers via GC or piecewise linear approximation (see <a href="#sec:non-linear">the Section on non-linear layers</a>).
 It also supports training over SS.</p>
 <p>ABY2.0 <span class="citation" data-cites="uss/Patra0SY21">(<a href="#ref-uss/Patra0SY21" role="doc-biblioref">Patra et al. 2021</a>)</span> supports more (online-)communication-efficient and higher fan-in multiplication and <span class="math inline">\(\mathsf{CMP}\)</span>
 by using a new kind of additive SS.</p>
 <p><strong>Say No to Beaver.</strong>
-Quotient <span class="citation" data-cites="ccs/AgrawalSKG19">(<a href="#ref-ccs/AgrawalSKG19" role="doc-biblioref">Agrawal et al. 2019</a>)</span> uses OT and GC to avoid (the expensive offline phase for) Beaver triplets,<br />
-which improves the overall throughput.
-It is specifically designed for ternarized NNs with weights confined to <span class="math inline">\(\{-1, 0, 1\}\)</span>.</p>
-<p>However, Quotient’s efficiency and accuracy are only demonstrated on small NNs with a few linear layers (using matrix multiplication).</p>
+Quotient <span class="citation" data-cites="ccs/AgrawalSKG19">(<a href="#ref-ccs/AgrawalSKG19" role="doc-biblioref">Agrawal et al. 2019</a>)</span> uses OT and GC to avoid (the expensive offline phase for) Beaver triplets, which improves the overall throughput.
+It is specifically designed for ternarized NNs with weights confined to <span class="math inline">\(\{-1, 0, 1\}\)</span>.
+However, Quotient’s efficiency and accuracy are only demonstrated on small NNs with a few linear layers (using matrix multiplication).</p>
 <p><strong>More Non-colluding Servers.</strong></p>
 <p>Having more servers allows more options, e.g.,
 a third server can aid in preparing triplets without interactions between two servers.
@@ -3244,7 +3245,7 @@ and
 Swift <span class="citation" data-cites="uss/KotiPPS21">(<a href="#ref-uss/KotiPPS21" role="doc-biblioref">Koti et al. 2021</a>)</span>
 also employ <span class="math inline">\(4\)</span> non-colluding servers to enhance the throughput.
 They aim to defend against malicious adversaries,
-to be discussed in Section <a href="#sec:malicious">for malicious security</a>.</p>
+to be discussed in <a href="#sec:malicious">the Section on malicious security</a>.</p>
 <h3 id="sec:limited_training">Fluctuating Weights in Limited-bitwidth Training</h3>
 <p>Private and outsourced training frameworks run backward propagation with millions of iterations beyond forward propagation in inference.
 The only purely-crypto frameworks demonstrating reasonable training time (hours/days for common NNs) use SS under non-colluding assumptions <span class="citation" data-cites="sp/TanKTW21 popets/WaghTBKMR21 popets/AttrapadungHIKM22">(<a href="#ref-sp/TanKTW21" role="doc-biblioref">Tan et al. 2021</a>; <a href="#ref-popets/WaghTBKMR21" role="doc-biblioref">Wagh et al. 2021</a>; <a href="#ref-popets/AttrapadungHIKM22" role="doc-biblioref">Attrapadung et al. 2022</a>)</span>.</p>
@@ -3259,11 +3260,11 @@ are yet to demonstrate
 running large NNs, e.g.,
 VGG,
 and more complicated datasets, e.g., CIFAR-10/100.</p>
-<p>Approaches for inference discussed in Section <a href="#sec:mixed-bitwidth">for mixed bitwidth</a> do not apply:
+<p>Approaches for inference discussed in <a href="#sec:mixed-bitwidth">the Section on mixed bitwidth</a> do not apply:
 With a higher overflow chance, fixed-scale truncation damages the training easily.
 Yet, we note that some underlying principles might remain relevant –</p>
 <p>One may aim for quantized NN (QNN) using low-bitwidth training.
-BatchNorm “for” non-linear function in Section <a href="#sec:non-linear">for non-linear layers</a> might also “helps.”</p>
+BatchNorm “for” non-linear function in <a href="#sec:non-linear">the Section on non-linear layers</a> might also “helps.”</p>
 <h3 id="privtrain:highbit">High Bitwidth</h3>
 <p>The private training frameworks usually use the <span class="math inline">\(64\)</span>-bit ring (<span class="math inline">\(\mathbb{Z}_{2^{64}}\)</span>) for their underlying SS.
 In contrast to the <span class="math inline">\(32\)</span>-bit (or less) ring used by
@@ -3284,7 +3285,7 @@ training
 requires division and inverse square root where the divisors
 should be private and unknown prior to training,
 while it is public and fixed in inference.
-FalconN thus resorts to a costly iterative method (see Section <a href="#sec:non-linear">for non-linear layers</a>) while leaking the input magnitude.</p>
+FalconN thus resorts to a costly iterative method (see <a href="#sec:non-linear">the Section on non-linear layers</a>) while leaking the input magnitude.</p>
 <h4 id="privtrain:adam">Adam</h4>
 <p>“AdamInPrivate” <span class="citation" data-cites="popets/AttrapadungHIKM22">(<a href="#ref-popets/AttrapadungHIKM22" role="doc-biblioref">Attrapadung et al. 2022</a>)</span> adopts adaptive moment estimation (Adam),
 a more advanced SGD algorithm for training.
@@ -3292,7 +3293,7 @@ To stabilize the gradient fluctuation between training batches,
 it scales the gradient by <span class="math inline">\(1/\sqrt{G}\)</span>,
 where <span class="math inline">\(G\)</span> is the moment, i.e.,
 the sum of the squares of the previous gradients.
-AdamInPrivate computes <span class="math inline">\(1/\sqrt{G}\)</span> using the techniques in Section <a href="#sec:non-linear">for non-linear layers</a>.</p>
+AdamInPrivate computes <span class="math inline">\(1/\sqrt{G}\)</span> using the techniques in <a href="#sec:non-linear">the Section on non-linear layers</a>.</p>
 <h3 id="privtrain:underflow">Low-bitwidth QNN Training with “Small” Fixed-point Gradients</h3>
 <p>BatchNorm and Adam cannot fully resolve the bitwidth hurdles.
 When a DNN attains a certain level of accuracy,
@@ -3317,7 +3318,7 @@ training requires the output layer to map its input via a differentiable functio
 to enable backward propagation.
 A common choice is <span class="math inline">\(\mathsf{softmax}(\mathbf{x}) = (e^{x_i}/\sum_j e^{x_j})_{i}\)</span>.
 Most schemes compute it with piecewise linear approximation.</p>
-<p>CrypTen <span class="citation" data-cites="nips/KnottVHSIM21">(<a href="#ref-nips/KnottVHSIM21" role="doc-biblioref">Knott et al. 2021</a>)</span> proposes a more efficient and accurate approach combining private division and the limit characterization of <span class="math inline">\(e^x\)</span> (Section <a href="#sec:non-linear">for non-linear layers</a>).</p>
+<p>CrypTen <span class="citation" data-cites="nips/KnottVHSIM21">(<a href="#ref-nips/KnottVHSIM21" role="doc-biblioref">Knott et al. 2021</a>)</span> proposes a more efficient and accurate approach combining private division and the limit characterization of <span class="math inline">\(e^x\)</span> (<a href="#sec:non-linear">the Section on non-linear layers</a>).</p>
 <h3 id="gpu-for-training">6. GPU for Training</h3>
 <p>Consider the dot product <span class="math inline">\(\sum_i \langle w_i \rangle \cdot \langle x_i \rangle\)</span>, the bitwidth of the SSs cannot exceed <span class="math inline">\(26\)</span> bits, not to mention redundant bitwidth to cater for additions.</p>
 <p>CryptGPU <span class="citation" data-cites="sp/TanKTW21">(<a href="#ref-sp/TanKTW21" role="doc-biblioref">Tan et al. 2021</a>)</span> utilizes GPUs for private training.
@@ -3334,8 +3335,8 @@ Still, the gradients may become too small and easily <a href="#privtrain:underfl
 The loss function <a href="#privtrain:softmax"><span class="math inline">\(\mathsf{softmax}\)</span></a> also requires accurate approximation.
 With the current techniques, we still need relatively <a href="#privtrain:highbit">high bitwidth representation</a>,
 harming the training throughput,
-and the resulting accuracy could be shy of <span class="math inline">\({&gt;}30\)</span>pp:</p>
-<p>CryptGPU <span class="citation" data-cites="sp/TanKTW21">(<a href="#ref-sp/TanKTW21" role="doc-biblioref">Tan et al. 2021</a>)</span> only attains <span class="math inline">\({\sim}60\%\)</span> accuracy in , while GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span> gets to <span class="math inline">\({&gt;}90\%\)</span> in oblivious inference <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span>.
+and the resulting accuracy could be shy of <span class="math inline">\({&gt;}30\)</span>pp:
+CryptGPU <span class="citation" data-cites="sp/TanKTW21">(<a href="#ref-sp/TanKTW21" role="doc-biblioref">Tan et al. 2021</a>)</span> only attains <span class="math inline">\({\sim}60\%\)</span> accuracy in , while GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span> gets to <span class="math inline">\({&gt;}90\%\)</span> in oblivious inference <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span>.
 Private training still desires more ML research,
 tackling the following two challenges.</p>
 <p><strong>Challenge 5.</strong>
@@ -3353,7 +3354,8 @@ which is good at sequential data like voice records and articles.
 RNN requires <span class="math inline">\(e^x\)</span> for <span class="math inline">\(\mathsf{sigmoid}\)</span>, <span class="math inline">\(\mathsf{tanh}\)</span>,
 and normalization,
 but their piecewise linear approximation <span class="citation" data-cites="ccs/LiuJLA17 sp/MohasselZ17">(<a href="#ref-ccs/LiuJLA17" role="doc-biblioref">Liu et al. 2017</a>; <a href="#ref-sp/MohasselZ17" role="doc-biblioref">Mohassel and Zhang 2017</a>)</span> unbearably fails.</p>
-<p>partitions non-comparison-based functions, e.g., <span class="math inline">\(\mathsf{sigmoid}\)</span>, into many linear functions, and uses <span class="math inline">\(\mathsf{CMP}\)</span> via GC to locate the piece of the input.
+<p><strong>Piecewise Approximation</strong>
+partitions non-comparison-based functions, e.g., <span class="math inline">\(\mathsf{sigmoid}\)</span>, into many linear functions, and uses <span class="math inline">\(\mathsf{CMP}\)</span> via GC to locate the piece of the input.
 SecureML and MiniONN adopt it.
 The accuracy increases with more dissections, but more <span class="math inline">\(\mathsf{CMP}\)</span> and multiplexers harm the performance.</p>
 <p><strong>Private Division</strong> is known to be more expensive
@@ -3387,9 +3389,7 @@ and scale <span class="math inline">\(\langle 1/(1 - y&#39;) \rangle\)</span> ba
 <span class="math inline">\(\langle 1/\sqrt{y} \rangle\)</span>
 can be evaluated by Newton’s iterative method
 <span class="math inline">\(w_i = \langle w_{i-1} \rangle \cdot (3 - \langle y \rangle \cdot \langle w_{i-1} \rangle^2)/2\)</span> with quadratic convergence.
-AdamInPrivate privately extracts in a circuit <span class="math inline">\(\lfloor \alpha/2 \rceil\)</span><br />
-and hides <span class="math inline">\(w_0\)</span>’s value.
-FalconN picks <span class="math inline">\(w_0 = 2^{\lfloor \alpha/2 \rceil}\)</span>.</p>
+AdamInPrivate privately extracts in a circuit <span class="math inline">\(\lfloor \alpha/2 \rceil\)</span> and hides <span class="math inline">\(w_0\)</span>’s value. FalconN picks <span class="math inline">\(w_0 = 2^{\lfloor \alpha/2 \rceil}\)</span>.</p>
 <p><strong>Exponential Function.</strong>
 For <span class="math inline">\(\langle e^x \rangle\)</span>,
 CrypTen <span class="citation" data-cites="nips/KnottVHSIM21">(<a href="#ref-nips/KnottVHSIM21" role="doc-biblioref">Knott et al. 2021</a>)</span>
@@ -3445,7 +3445,7 @@ can be factorized into
 over <span class="math inline">\(V\)</span> unique weights after clustering, where <span class="math inline">\(S_i\)</span> is the index set,
 COINN uses <span class="math inline">\(N\)</span>
 OTs to select and accumulate <span class="math inline">\(\sum_{j \in S_i}{X_j}\)</span> for <span class="math inline">\(i \in [V]\)</span>,
-resulting in <span class="math inline">\({\approx} VN\ell\)</span> bits of communication over <span class="math inline">\(\ell\)</span>-bit arithmetic shares (vs. <span class="math inline">\({\approx}N\ell^2\)</span>, as in Section <a href="#sec:off-on-share">for offline-online computation</a>).</p>
+resulting in <span class="math inline">\({\approx} VN\ell\)</span> bits of communication over <span class="math inline">\(\ell\)</span>-bit arithmetic shares (vs. <span class="math inline">\({\approx}N\ell^2\)</span>, as in <a href="#sec:off-on-share">the Section on offline-online computation</a>).</p>
 <p>Then, it computes the shortened dot product over size-<span class="math inline">\(V\)</span> vectors with <span class="math inline">\(V\ell^2\)</span> bits of communication.
 The total cost is reduced to <span class="math inline">\(V\ell(N + \ell)\)</span>
 with COINN’s bit-width optimization
@@ -3510,7 +3510,7 @@ if possible.</p>
 <p><strong>Challenge 10.</strong>
 <em>How to guide non-cryptographers to select “tight” HE parameters or avoid the troubles of the noise?</em></p>
 <p>Compilers are proposed to do it w.r.t. NN architecture.
-We defer them to Section <a href="#sec:compiler">for compilers</a> for their multiple purposes <span class="citation" data-cites="cf/BoemerLCW19">(<a href="#ref-cf/BoemerLCW19" role="doc-biblioref">Boemer, Lao, et al. 2019</a>)</span>.</p>
+We defer them to <a href="#sec:compiler">the Section on compilers</a> for their multiple purposes <span class="citation" data-cites="cf/BoemerLCW19">(<a href="#ref-cf/BoemerLCW19" role="doc-biblioref">Boemer, Lao, et al. 2019</a>)</span>.</p>
 <p><strong>Selecting tight HE parameters</strong> is critical for performance.
 A few frameworks automatically pick just-enough choices to prevent overflow
 with operational costs confined.
@@ -3522,7 +3522,7 @@ nGraph-HE2 <span class="citation" data-cites="wahc/BoemerCCW19">(<a href="#ref-w
 selects small parameters (<span class="math inline">\(32\)</span>-bit moduli) to reduce CPU instructions for HE.</p>
 <p><strong>Optimizing the data layout</strong>
 can lower rotation costs
-(e.g., for dot product, see <a href="#sec:he-simd">Section for efficent HE</a>).
+(e.g., for dot product, see <a href="#sec:he-simd">the Section on efficient HE</a>).
 Most frameworks automatically encode (plaintext/encrypted) tensors into the HE polynomials,
 without developers noticing the underlying data layout.</p>
 <p>CHET <span class="citation" data-cites="pldi/DathathriSCLLMM19">(<a href="#ref-pldi/DathathriSCLLMM19" role="doc-biblioref">Dathathri et al. 2019</a>)</span> further optimizes the data layout to minimize the overall rotation cost,
@@ -3922,7 +3922,7 @@ since non-colluding MPC frameworks often feature efficient outsourced training a
 E2DM and GarbledNN support outsourced inference, and Glyph supports outsourced training.
 Yet, their performance is far from the S/C and pure-HE frameworks.
 For detailed discussions about the state-of-the-art frameworks in different settings,
-see Section <a href="#sec:sota-diff-setting">for SoTA</a> and Fig. <a href="#fig:soa-perf">7</a>.</p>
+see <a href="#sec:sota-diff-setting">the Section on SoTA</a> and Fig. <a href="#fig:soa-perf">7</a>.</p>
 <p>We end with remarks on two popular application areas.
 Natural language processing often runs on RNNs,
 which require heavy computation due to recurrent calls to some gigantic NN
@@ -3992,7 +3992,7 @@ Quotient is reported to produce NNs with <span class="math inline">\(6\)</span>p
 reports the highest accuracy, lower latency, and higher throughput than
 FalconN, SecureNN, and CrypTen in CIFAR-10.
 Yet, its throughput and latency are slightly worse than Piranha <span class="citation" data-cites="uss/WatsonWP22">(<a href="#ref-uss/WatsonWP22" role="doc-biblioref">Watson, Wagh, and Popa 2022</a>)</span>,
-as discussed in Section <a href="#sec:benchmark">for benchmark</a> .</p>
+as discussed in <a href="#sec:benchmark">the Section on benchmark</a> .</p>
 <p>Other <span class="math inline">\(3\)</span>PC solutions (e.g., Blaze <span class="citation" data-cites="ndss/PatraS20">(<a href="#ref-ndss/PatraS20" role="doc-biblioref">Patra and Suresh 2020</a>)</span> and Swift <span class="citation" data-cites="uss/KotiPPS21">(<a href="#ref-uss/KotiPPS21" role="doc-biblioref">Koti et al. 2021</a>)</span>) only support inference and are tested on MNIST but not harder datasets.
 We remark that some of them can defend against malicious adversaries.</p>
 <h4 id="non-colluding-servers.-2"><span class="math inline">\(4\)</span> Non-colluding Servers.</h4>
@@ -4038,7 +4038,7 @@ Abadi, Martı́n, Paul Barham, Jianmin Chen, Zhifeng Chen, Andy Davis, Jeffrey D
 Agrawal, Nitin, Ali Shahin Shamsabadi, Matt J. Kusner, and Adrià Gascón. 2019. <span>“QUOTIENT: Two-Party Secure Neural Network Training and Prediction.”</span> In <em>CCS</em>, 1231–47.
 </div>
 <div id="ref-popets/AttrapadungHIKM22" class="csl-entry" role="listitem">
-Attrapadung, Nuttapong, Koki Hamada, Dai Ikarashi, Ryo Kikuchi, Takahiro Matsuda, Ibuki Mishina, Hiraku Morita, and Jacob C. N. Schuldt. 2022. <span>“Adam in Private: Secure and Fast Training of Deep Neural Networks with Adaptive Moment Estimation.”</span> <em>PoPETs</em>, no. 4.
+Attrapadung, Nuttapong, Koki Hamada, Dai Ikarashi, Ryo Kikuchi, Takahiro Matsuda, Ibuki Mishina, Hiraku Morita, and Jacob C. N. Schuldt. 2022. <span>“Adam in Private: Secure and Fast Training of Deep Neural Networks with Adaptive Moment Estimation.”</span> <em>PoPETs</em>, no. 4: 746–67.
 </div>
 <div id="ref-primelife/AzraouiBBCCEMMO19" class="csl-entry" role="listitem">
 Azraoui, Monir, Muhammad Barham, Beyza Bozdemir, Sébastien Canard, Eleonora Ciceri, Orhan Ermis, Ramy Masalha, et al. 2019. <span>“<span>SoK: C</span>ryptography for Neural Networks.”</span> In <em>Summer Sch. On Pri. &amp; Id. Mgt. (Data for Better Living)</em>, 63–81.
@@ -4329,7 +4329,7 @@ Veugen, Thijs. 2012. <span>“Improving the <span>DGK</span> Comparison Protocol
 Wagh, Sameer, Divya Gupta, and Nishanth Chandran. 2019. <span>“<span>SecureNN</span>: 3-Party Secure Computation for Neural Network Training.”</span> <em>PoPETs</em>, no. 3: 26–49.
 </div>
 <div id="ref-popets/WaghTBKMR21" class="csl-entry" role="listitem">
-Wagh, Sameer, Shruti Tople, Fabrice Benhamouda, Eyal Kushilevitz, Prateek Mittal, and Tal Rabin. 2021. <span>“FALCON: Honest-Majority Maliciously Secure Framework for Private Deep Learning.”</span> <em>PoPETs</em>, no. 1.
+Wagh, Sameer, Shruti Tople, Fabrice Benhamouda, Eyal Kushilevitz, Prateek Mittal, and Tal Rabin. 2021. <span>“FALCON: Honest-Majority Maliciously Secure Framework for Private Deep Learning.”</span> <em>PoPETs</em>, no. 1: 188–208.
 </div>
 <div id="ref-uss/WatsonWP22" class="csl-entry" role="listitem">
 Watson, Jean-Luc, Sameer Wagh, and Raluca Popa. 2022. <span>“Piranha: A <span>GPU</span> Platform for Secure Computation.”</span> In <em>USENIX Security Symposium</em>.
@@ -4389,7 +4389,7 @@ Zheng, Wenting, Raluca Ada Popa, Joseph E. Gonzalez, and Ion Stoica. 2019. <span
 
 <p>BibTeX citation</p>
 <pre class="citation-appendix long">@inproceedings{sp/NgC23,
-  author = {Ng, Lucien K. L. and Chow, Sherman S. M},
+  author = {N, Lucien K. L. and Chow, Sherman S. M},
   title = {SoK: Cryptographic Neural-Network Computation},
   booktitle = {44th {IEEE} Symposium on Security and Privacy, {SP} 2023, San Francisco,
                CA, USA, 22-25 May 2023},
