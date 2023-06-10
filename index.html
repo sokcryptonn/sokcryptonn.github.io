@@ -2342,7 +2342,7 @@ function waitForElm(selector) {
 }
 
 waitForElm("body > d-byline > div > div:nth-child(2)").then((elm) => {
-    elm.innerHTML = "<div><h3>Last Updated</h3><p>01 June, 2023</p></div>"
+    elm.innerHTML = "<div><h3>Last Updated</h3><p>10 June, 2023</p></div>"
     console.log(elm.textContent);
 });
 
@@ -2582,8 +2582,7 @@ among the parties.
 We refer to the MPC for <span class="math inline">\(n\)</span> parties by <span class="math inline">\(n\)</span>PC (e.g., <span class="math inline">\(4\)</span>PC).
 We also refer to frameworks with non-colluding servers by MPC frameworks.</p>
 <h4 id="subsec:ss"><span class="math inline">\((t, n)\)</span> Secret Sharing (SS)</h4>
-<p>SS distributes Section
-a secret <span class="math inline">\(x\)</span> into
+<p>SS distributes a secret <span class="math inline">\(x\)</span> into
 shares <span class="math inline">\(\{\langle x \rangle_i\}\)</span> for <span class="math inline">\(n\)</span> parties;
 <span class="math inline">\(x\)</span> can be recovered from any <span class="math inline">\(t \geq n\)</span> shares,
 e.g.,
@@ -2595,11 +2594,11 @@ Addition and constant multiplication can be done locally.</p>
 which requires both parties to have prepared offline (via HE, oblivious transfer, or a non-colluding server)
 additive SS of <span class="math inline">\(u, v, z\)</span> (<em>Beaver triplets</em>), where <span class="math inline">\(z = u \cdot v\)</span>.</p>
 <p><em>Boolean</em> SS <span class="math inline">\((2, 2)\)</span>-shares a bit-string via bit-wise exclusive OR (<span class="math inline">\(\mathsf{XOR}\)</span>) over <span class="math inline">\(\mathbb{Z}_2\)</span>.</p>
-<p>GMW protocol of Goldreich can evaluate logic gates (e.g., <span class="math inline">\(\mathsf{AND}\)</span>, <span class="math inline">\(\mathsf{XOR}\)</span>),
+<p>GMW protocol of Goldreich <em>et al.</em> <span class="citation" data-cites="stoc/GoldreichMW87">(<a href="#ref-stoc/GoldreichMW87" role="doc-biblioref">Goldreich, Micali, and Wigderson 1987</a>)</span> can evaluate logic gates (e.g., <span class="math inline">\(\mathsf{AND}\)</span>, <span class="math inline">\(\mathsf{XOR}\)</span>),
 simple circuits (e.g., <span class="math inline">\(\mathsf{CMP}\)</span> for comparison), and a composed circuit over them.
 To save communication rounds, we may run GMW in parallel for some gates, but its runtime is still linear in the circuit depth.</p>
-<h4 id="yaos-garbled-circuit-gc-focsyao86">Yao’s Garbled Circuit (GC) <span id="sec:prelim_gc"><span class="citation" data-cites="focs/Yao86">Yao (<a href="#ref-focs/Yao86" role="doc-biblioref">1986</a>)</span></span></h4>
-<p>also supports oblivious <span class="math inline">\(2\)</span>PC circuit evaluation
+<h4 id="sec:prelim_gc">Yao’s Garbled Circuit (GC)</h4>
+<p>GC <span class="citation" data-cites="focs/Yao86">(<a href="#ref-focs/Yao86" role="doc-biblioref">Yao 1986</a>)</span> also supports oblivious <span class="math inline">\(2\)</span>PC circuit evaluation
 over “encrypted” truth tables of gates, with
 decryption keys named <em>Yao’s shares</em>.
 GC only takes constant communication rounds.</p>
@@ -2871,7 +2870,7 @@ heavyweight multi-key FHE.</p>
 This begs the question:</p>
 <p><strong>Open Problem 2.</strong>
 <em>What positive/negative results can we establish on the sample complexity, expressiveness, and (the practical) training time for networks based on polynomials?</em></p>
-<p>Linvi provided some results.
+<p>Linvi <em>et al.</em> <span class="citation" data-cites="nips/LivniSS14">(<a href="#ref-nips/LivniSS14" role="doc-biblioref">Livni, Shalev-Shwartz, and Shamir 2014</a>)</span> provided some results.
 Understanding more about deep learning still needs more research <span class="citation" data-cites="cacm/ZhangBHRV21">(<a href="#ref-cacm/ZhangBHRV21" role="doc-biblioref">C. Zhang et al. 2021</a>)</span>.
 In contrast, Sections <a href="#sec:comparison"><span class="math inline">\(\mathsf{CMP}\)</span></a> and <a href="#sec:non-linear">non-linear layers</a> explore non-polynomial approaches.</p>
 <h2 id="sec:circuit">Boolean-Circuit-based Approaches</h2>
@@ -2959,7 +2958,7 @@ which takes more communication than using HE.</p>
 In SOS, the client can generate an AHE of an additive mask
 offline.
 Once the input arrives, an SS-based protocol is run on the client’s masked input <span class="math inline">\(\langle X \rangle\)</span>.
-The server in Delphi <span id="sec:delphi_linear"><span class="citation" data-cites="uss/MishraLSZP20">Mishra et al. (<a href="#ref-uss/MishraLSZP20" role="doc-biblioref">2020</a>)</span></span> and GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span>
+The server in Delphi <span class="citation" data-cites="uss/MishraLSZP20">(<a href="#ref-uss/MishraLSZP20" role="doc-biblioref">Mishra et al. 2020</a>)</span> and GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span>
 can use GPU to compute
 <span class="math inline">\(W \otimes \langle X \rangle\)</span>
 with performance close to plaintext computation.</p>
@@ -2994,7 +2993,8 @@ confined.</p>
 Circa <span class="citation" data-cites="nips/GhodsiJ21">(<a href="#ref-nips/GhodsiJ21" role="doc-biblioref">Ghodsi et al. 2021</a>)</span> simplifies and thus accelerates <span class="math inline">\(\mathsf{CMP}\)</span> in GC,
 and truncates its input to suppress its error probability, which is linear in the input’s absolute value.</p>
 <p><strong>DGK for GPU.</strong>
-DGK protocol of Damgard compares two HE-encrypted integers and outputs a result bit.
+DGK protocol of Damgard <em>et al.</em> <span class="citation" data-cites="acisp/DamgardGK07">(<a href="#ref-acisp/DamgardGK07" role="doc-biblioref">Damgård, Geisler, and Krøigaard 2007</a>)</span>
+compares two HE-encrypted integers and outputs a result bit.
 Its naive implementation is slower than GC/GMW’s <span class="math inline">\(\mathsf{CMP}\)</span>.
 GForce <span class="citation" data-cites="uss/NgC21">(<a href="#ref-uss/NgC21" role="doc-biblioref">Ng and Chow 2021</a>)</span> transforms DGK
 into a bunch of linear operations and fits them with its AHE-to-SOS trick,
@@ -3433,8 +3433,8 @@ while iterative approaches are inherently sequential.</p>
 <p>The above approaches only work on additive shares.
 Glyph <span class="citation" data-cites="nips/LouFF020">(<a href="#ref-nips/LouFF020" role="doc-biblioref">Lou et al. 2020</a>)</span> uses the lookup table implemented by TFHE and BGV-HE to compute <span class="math inline">\(\mathsf{sigmoid}\)</span> and <span class="math inline">\(\mathsf{softmax}\)</span>.
 Yet, it is impractically slow due to the overhead caused by the FHE schemes.
-Lately, Heath and Kolesnikov <span class="citation" data-cites="ccs/HeathK21">(<a href="#ref-ccs/HeathK21" role="doc-biblioref">Heath and Kolesnikov 2021</a>)</span> propose one-hot garbling that allows efficient privacy-free lookup tables in garbled circuits.</p>
-<p>It would be interesting to know if it can speed up non-linear layers,
+Lately, Heath and Kolesnikov <span class="citation" data-cites="ccs/HeathK21">(<a href="#ref-ccs/HeathK21" role="doc-biblioref">Heath and Kolesnikov 2021</a>)</span> propose one-hot garbling that allows efficient privacy-free lookup tables in garbled circuits.
+It would be interesting to know if it can speed up non-linear layers,
 especially in a high-latency communication environment where GC trumps OT.</p>
 <p>To sum up, many tricks are inspired by
 numerical approximations, possibly with a new angle, such as the lookup approach
@@ -3686,12 +3686,14 @@ CIFAR-10/100.
 Unfortunately, they rarely provide accuracy, probably because fixed-point issues are yet to be overcome for the large NNs needed.
 It is hard to have a fair comparison.</p>
 <p>To put accuracy and latency into perspective,
-we may also factor in:
-- the problem setting (oblivious/outsourced inference or outsourced/private training),
-- the chosen dataset,
-- the network condition (e.g., LAN or WAN),
-- the number of non-colluding servers, and
-- online versus total performance.</p>
+we may also factor in:</p>
+<ul>
+<li>the problem setting (oblivious/outsourced inference or outsourced/private training),</li>
+<li>the chosen dataset,</li>
+<li>the network condition (e.g., LAN or WAN),</li>
+<li>the number of non-colluding servers, and</li>
+<li>online versus total performance.</li>
+</ul>
 <h3 id="oblivious-inference">Oblivious Inference</h3>
 <p>We summarize the performance of <span class="math inline">\(23\)</span> frameworks marked with CIFAR-10 in <a href="#summary-fw">our Summary of all Frameworks</a>
 (except AdamInPrivate with only training benchmarks).
@@ -4019,7 +4021,7 @@ Quotient is reported to produce NNs with <span class="math inline">\(6\)</span>p
 reports the highest accuracy, lower latency, and higher throughput than
 FalconN, SecureNN, and CrypTen in CIFAR-10.
 Yet, its throughput and latency are slightly worse than Piranha <span class="citation" data-cites="uss/WatsonWP22">(<a href="#ref-uss/WatsonWP22" role="doc-biblioref">Watson, Wagh, and Popa 2022</a>)</span>,
-as discussed in <a href="#sec:benchmark">the Section on benchmark</a> .</p>
+as discussed in <a href="#sec:benchmark">the Section on benchmark</a>.</p>
 <p>Other <span class="math inline">\(3\)</span>PC solutions (e.g., Blaze <span class="citation" data-cites="ndss/PatraS20">(<a href="#ref-ndss/PatraS20" role="doc-biblioref">Patra and Suresh 2020</a>)</span> and Swift <span class="citation" data-cites="uss/KotiPPS21">(<a href="#ref-uss/KotiPPS21" role="doc-biblioref">Koti et al. 2021</a>)</span>) only support inference and are tested on MNIST but not harder datasets.
 We remark that some of them can defend against malicious adversaries.</p>
 <h4 id="non-colluding-servers.-2"><span class="math inline">\(4\)</span> Non-colluding Servers.</h4>
@@ -4150,6 +4152,9 @@ Dalskov, Anders P. K., Daniel Escudero, and Marcel Keller. 2020. <span>“Secure
 </div>
 <div id="ref-uss/Dalskov0K21" class="csl-entry" role="listitem">
 ———. 2021. <span>“Fantastic Four: Honest-Majority Four-Party Secure Computation with Malicious Security.”</span> In <em>USENIX Security Symposium</em>, 2183–2200.
+</div>
+<div id="ref-acisp/DamgardGK07" class="csl-entry" role="listitem">
+Damgård, Ivan, Martin Geisler, and Mikkel Krøigaard. 2007. <span>“Efficient and Secure Comparison for on-Line Auctions.”</span> In <em>ACISP</em>, 416–30.
 </div>
 <div id="ref-pldi/DathathriSCLLMM19" class="csl-entry" role="listitem">
 Dathathri, Roshan, Olli Saarikivi, Hao Chen, Kim Laine, Kristin E. Lauter, Saeed Maleki, Madanlal Musuvathi, and Todd Mytkowicz. 2019. <span>“<span>CHET:</span> An Optimizing Compiler for Fully-Homomorphic Neural-Network Inferencing.”</span> In <em>PLDI</em>, 142–56.
