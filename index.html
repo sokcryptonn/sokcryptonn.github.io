@@ -2217,6 +2217,11 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <script src="site_libs/distill-2.2.21/template.v2.js"></script>
   <!--radix_placeholder_site_in_header-->
   <style type="text/css">
+  @media only screen and (max-width: 768px) {
+    .header {display: none; }
+    .d-title {padding-top: 21px; }
+  }
+
   p {
     text-rendering: optimizeLegibility;
     text-align: justify;
@@ -2241,6 +2246,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
       border-bottom: 1px solid rgba(0, 0, 0, 0.1);
       padding-bottom: 1rem;
   }
+
+
   </style>
   <!--/radix_placeholder_site_in_header-->
 
@@ -2342,7 +2349,7 @@ function waitForElm(selector) {
 }
 
 waitForElm("body > d-byline > div > div:nth-child(2)").then((elm) => {
-    elm.innerHTML = "<div><h3>Last Updated</h3><p>10 June, 2023</p></div>"
+    elm.innerHTML = "<div><h3>Last Updated</h3><p>18 June, 2023</p></div>"
     console.log(elm.textContent);
 });
 
@@ -2605,7 +2612,8 @@ GC only takes constant communication rounds.</p>
 <p>Moreover, the encrypted truth table can be sent in the offline phase.
 In the online phase, the garbler only obliviously sends the evaluator the shares for input.
 In contrast, GMW requires interaction for each <span class="math inline">\(\mathsf{AND}\)</span> gate.
-Thus, GC is thus a better choice than GMW for <span class="math inline">\(2\)</span>PC .</p>
+Thus, GC is thus a better choice than GMW for <span class="math inline">\(2\)</span>PC <span class="citation" data-cites="ndss/DemmlerSZ15">(<a href="#ref-ndss/DemmlerSZ15" role="doc-biblioref">Demmler, Schneider, and Zohner 2015</a>)</span>.
+<!-- (see Fig. 3 in [@ndss/DemmlerSZ15]). --></p>
 <h4 id="sec:prelim_ot">Oblivious Transfer (OT)</h4>
 <p>allows the receiver to pick the <span class="math inline">\(i\)</span>-th item obliviously (hiding <span class="math inline">\(i\)</span>) from the sender’s table of items <span class="math inline">\(A_1, \ldots, A_n\)</span>,
 i.e., it realizes <span class="math inline">\(2\)</span>PC <span class="math inline">\(f(\{A_j\}, i) \rightarrow (\bot, A_i)\)</span>.
@@ -2684,7 +2692,7 @@ with the message inside unchanged <span class="citation" data-cites="nutmic/Bour
 in general
 in a high-latency network as no communication is needed in between.
 This motivates pure-HE frameworks
-(the Section <a href="#sec:pure-lhe">on pure-LHE frameworks</a> and <a href="#sec:tfhe">on TFHE frameworks</a>)
+(the Sections <a href="#sec:pure-lhe">on pure-LHE frameworks</a> and <a href="#sec:tfhe">on TFHE frameworks</a>)
 and differentiates them from the rest.</p>
 <p>LHE and arithmetic SS are born to handle linear layers.
 Boolean/circuit-based primitives,
